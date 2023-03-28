@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+ margin-left:100px;
+
+        }
+        .container{
+            display:flex;
+ flex-wrap:wrap;
+ margin-bottom: 10px;
+ 
+        }
+       
+        .card {
+  width: 190px;
+  height: 274px;
+  background: white;
+  padding: .4em;
+  border-radius: 6px;
+  margin-right: 10px;
+
+}
+
+.card-image {
+  background-color: rgb(236, 236, 236);
+  width: 100%;
+  height: 60%;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-image:hover {
+  transform: scale(0.98);
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: rgb(63, 121, 230);
+  padding: 10px 7px 0;
+}
+
+.category:hover {
+  cursor: pointer;
+}
+
+.heading {
+  font-weight: 600;
+  color: rgb(88, 87, 87);
+  padding: 7px;
+}
+
+.heading:hover {
+  cursor: pointer;
+}
+
+.author {
+  color: gray;
+  font-weight: 400;
+  font-size: 11px;
+  padding-top: 20px;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.name:hover {
+  cursor: pointer;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  min-height: 50px;
+  max-width: 150px;
+  padding: 0 1rem;
+  color: #fff;
+  font-size: 15px;
+  border: 1px solid #5e4dcd;
+  border-radius: 6px 0 0 6px;
+  background-color: transparent;
+}
+
+.button--submit {
+  min-height: 50px;
+  padding: .5em 1em;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  background-color: #5e4dcd;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+}
+
+.button--submit:hover {
+  background-color: #5e5dcd;
+}
+
+.input:focus, .input:focus-visible {
+  border-color: #3898EC;
+  outline: none;
+}
+
+    </style>
+</head>
+<body>
+    
+
+    <h1>food quality check</h1>
+    <form action="" method="post">
+      {% csrf_token %} 
+    <div class="input-group">
+      <input type="text" class="input" id="Email" name="s" placeholder="Search ...." autocomplete="off" style="color:black;">
+      <input class="button--submit" value="Subscribe" type="submit">
+    </form>
+  </div>
+  <br>
+<div class="container">
+    {% for i in list %}
+    <div class="card" style="border: 5px solid black;">
+        <div class="card-image"><img src="IMG_20210516_110620_165.jpg"></div>
+        <div class="category"> {{ i.list_name }} </div>
+        <div class="heading"> {{ i.list_location }}
+            <div class="author"> expitry <span class="name">{{ i.list_quality_expiry }}</span> <br>    price - {{ i.list_price }} <br> rating - {{ i.list_rating }}</div>
+        </div>
+    </div>
+   {% endfor %}
+</div>
+<hr>
+<hr>
+
+<a href="{% url 'registration' %}"><button>COMPANY ITEM CHECKING UPDATE</button></a>
+<a href="{% url 'main' %}"><button>Main</button></a>
+</body>
+</html>

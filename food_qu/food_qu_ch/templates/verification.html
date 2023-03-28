@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+             body{
+ margin-left:100px;
+
+        }
+        .container{
+            display:flex;
+ flex-wrap:wrap;
+ margin-bottom: 10px;
+ 
+        }
+        .card {
+  width: 190px;
+  height: 274px;
+  background: white;
+  padding: .4em;
+  border-radius: 6px;
+}
+
+.card-image {
+  background-color: rgb(236, 236, 236);
+  width: 100%;
+  height: 60%;
+  border-radius: 6px 6px 0 0;
+}
+
+.card-image:hover {
+  transform: scale(0.98);
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: rgb(63, 121, 230);
+  padding: 10px 7px 0;
+}
+
+.category:hover {
+  cursor: pointer;
+}
+
+.heading {
+  font-weight: 600;
+  color: rgb(88, 87, 87);
+  padding: 7px;
+}
+
+.heading:hover {
+  cursor: pointer;
+}
+
+.author {
+  color: gray;
+  font-weight: 400;
+  font-size: 11px;
+  padding-top: 20px;
+}
+
+
+
+
+
+
+
+button {
+ padding: 0.8em 1.8em;
+ border: 2px solid #17C3B2;
+ position: relative;
+ overflow: hidden;
+ background-color: transparent;
+ text-align: center;
+ text-transform: uppercase;
+ font-size: 16px;
+ transition: .3s;
+ z-index: 1;
+ font-family: inherit;
+ color: #17C3B2;
+ height:10px;
+
+}
+
+button::before {
+ content: '';
+ width: 0;
+ height: 300%;
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%) rotate(45deg);
+ background: #17C3B2;
+ transition: .5s ease;
+ display: block;
+ z-index: -1;
+}
+
+button:hover::before {
+ width: 105%;
+}
+
+button:hover {
+ color: #111;
+}
+
+
+
+
+.name {
+  font-weight: 600;
+}
+
+.name:hover {
+  cursor: pointer;
+}
+
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  label {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+  }
+
+  input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  button:hover {
+    background-color: #3e8e41;
+  }
+
+    </style>
+</head>
+<body>
+    <h1>verification</h1>
+    <div class="container">
+       {{ key }}
+        <br>
+
+            {% for i in v %}
+        <div class="card">
+            <div class="card-image"></div>
+            <div class="category">  {{ i.list_name }} </div>
+            <div class="heading"> {{ i.list_location }}
+                <div class="author"> price  <span class="name">{{ i.list_price }}</span><br> email =>  {{ i.list_email }}</div>
+                
+            </div>
+        </div>
+        {% endfor %}
+
+    
+    </div>
+
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+       
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="loc" required>
+      
+        <label for="expirydatetime">Expiry Date and Time:</label>
+        <input type="datetime-local" id="expirydatetime" name="ex" required>
+      
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="pr" required>
+      
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="em" required>
+      
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="ra" min="1" max="5" required>
+      
+        <button type="submit">Submit</button>
+        
+      </form>
+      <a href="{% url 'main' %}"><button>Main</button></a> 
+</body>
+</html>
